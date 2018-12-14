@@ -29,8 +29,12 @@
                             @foreach($listings as $listing)
                                 <tr>
                                     <td>{{ $listing->name }}</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><a href="/listings/{{$listing->id}}/edit" class="btn btn-primary">Edit</a></td>
+                                    <td>
+                                        {!! Form::open(['action' =>['ListingsController@destroy', $listing->id], 'method' => 'delete','class' => 'float-left', 'onsubmit' => 'return confirm("Are you sure?")']) !!}
+                                        {{ Form::bsSubmit('Delete', ['class'=> 'btn btn-danger']) }}
+                                        {{ Form::close() }}
+                                    </td>
                                 </tr>
                                 @endforeach
                         </table>
